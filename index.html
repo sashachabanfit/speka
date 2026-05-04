@@ -813,8 +813,8 @@ src="https://www.facebook.com/tr?id=198219300919390&ev=PageView&noscript=1"
       Без залу. Без дієт. Без тренера поруч.
     </p>
     <div class="hero-cta">
-      <a href="https://t.me/Fit_HelperUA_Bot" class="btn-fire">🔥 Почати трансформацію</a>
-      <a href="#pricing" class="btn-ghost">Дивитись тарифи →</a>
+      <a href="https://t.me/Fit_HelperUA_Bot" class="btn-fire" onclick="gtag('event', 'click', {event_category: 'CTA', event_label: 'hero_main_button'}); fbq('track', 'Lead');">🔥 Почати трансформацію</a>
+      <a href="#pricing" class="btn-ghost" onclick="gtag('event', 'click', {event_category: 'CTA', event_label: 'hero_pricing_button'});">Дивитись тарифи →</a>
     </div>
   </div>
   <div class="hero-stats">
@@ -1017,7 +1017,7 @@ src="https://www.facebook.com/tr?id=198219300919390&ev=PageView&noscript=1"
         <li>Доступ до чату підтримки</li>
         <li>Не сподобається — просто не продовжуй</li>
       </ul>
-      <a href="https://t.me/Fit_HelperUA_Bot" class="price-cta price-cta-ghost" target="_blank">Спробувати без ризику →</a>
+      <a href="https://t.me/Fit_HelperUA_Bot" class="price-cta price-cta-ghost" target="_blank" onclick="gtag('event', 'click', {event_category: 'Purchase', event_label: 'plan_test_200'}); fbq('track', 'InitiateCheckout', {value: 200, currency: 'UAH'});">Спробувати без ризику →</a>
     </div>
     <div class="price-card featured reveal">
       <div class="price-badge">ПОПУЛЯРНИЙ</div>
@@ -1030,7 +1030,7 @@ src="https://www.facebook.com/tr?id=198219300919390&ev=PageView&noscript=1"
         <li>Дешевше ніж 2 заняття в залі</li>
         <li>70+ тренувань + чат підтримки</li>
       </ul>
-      <a href="https://t.me/Fit_HelperUA_Bot" class="price-cta">🔥 Почати зараз</a>
+      <a href="https://t.me/Fit_HelperUA_Bot" class="price-cta" onclick="gtag('event', 'click', {event_category: 'Purchase', event_label: 'plan_month_700'}); fbq('track', 'InitiateCheckout', {value: 700, currency: 'UAH'});">🔥 Почати зараз</a>
     </div>
     <div class="price-card reveal">
       <div class="price-badge" style="background: linear-gradient(135deg, #FFD700, #FFA500);">ВИГІДНО</div>
@@ -1043,7 +1043,7 @@ src="https://www.facebook.com/tr?id=198219300919390&ev=PageView&noscript=1"
         <li>Звичка яка залишається назавжди</li>
         <li>Економія ~430₴ vs місячний</li>
       </ul>
-      <a href="https://t.me/Fit_HelperUA_Bot" class="price-cta">Обрати 3 місяці</a>
+      <a href="https://t.me/Fit_HelperUA_Bot" class="price-cta" onclick="gtag('event', 'click', {event_category: 'Purchase', event_label: 'plan_3months_1700'}); fbq('track', 'InitiateCheckout', {value: 1700, currency: 'UAH'});">Обрати 3 місяці</a>
     </div>
   </div>
 </section>
@@ -1069,10 +1069,31 @@ src="https://www.facebook.com/tr?id=198219300919390&ev=PageView&noscript=1"
 <section class="footer-cta">
   <h2 class="reveal">Поки ти думаєш — вона вже тренується</h2>
   <p class="reveal">Спробуй 1 день за 200 грн. Якщо не сподобається — просто не продовжуй. Нічого не втратиш. Але якщо сподобається — зміниться все. 🔥</p>
-  <a href="https://t.me/Fit_HelperUA_Bot" class="btn-fire reveal">🔥 Почати трансформацію</a>
+  <a href="https://t.me/Fit_HelperUA_Bot" class="btn-fire reveal" onclick="gtag('event', 'click', {event_category: 'CTA', event_label: 'footer_main_button'}); fbq('track', 'Lead');">🔥 Почати трансформацію</a>
 </section>
 
 <script>
+
+  // Scroll depth tracking
+  let scrollMarks = {25: false, 50: false, 75: false, 100: false};
+  window.addEventListener('scroll', function() {
+    const scrollPct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    Object.keys(scrollMarks).forEach(function(mark) {
+      if (scrollPct >= mark && !scrollMarks[mark]) {
+        scrollMarks[mark] = true;
+        gtag('event', 'scroll_depth', {event_category: 'Engagement', event_label: mark + '%'});
+      }
+    });
+  });
+
+  // Track time on page
+  setTimeout(function() {
+    gtag('event', 'time_on_page', {event_category: 'Engagement', event_label: '30_seconds'});
+  }, 30000);
+  setTimeout(function() {
+    gtag('event', 'time_on_page', {event_category: 'Engagement', event_label: '60_seconds'});
+  }, 60000);
+
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
