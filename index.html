@@ -2,6 +2,24 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '198219300919390');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=198219300919390&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 <!-- ContentSquare (Hotjar) -->
 <script src="https://t.contentsquare.net/uxa/b3076289e42ba.js"></script>
 
@@ -194,6 +212,7 @@
     font-size: 48px;
     color: var(--cream);
     line-height: 1;
+    white-space: nowrap;
   }
 
   .stat-label {
@@ -733,7 +752,9 @@
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
-    .hero-stats { position: static; margin-top: 48px; justify-content: flex-start; }
+    .hero-stats { position: static; margin-top: 40px; justify-content: space-between; gap: 12px; }
+  .stat-number { font-size: 32px; }
+  .stat-label { font-size: 10px; }
     .formats-layout { grid-template-columns: 1fr; }
     .formats-visual { order: -1; }
     .trainer-layout { grid-template-columns: 1fr; text-align: center; }
